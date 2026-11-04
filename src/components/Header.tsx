@@ -88,7 +88,12 @@ export const Header: React.FC<HeaderProps> = ({
       badge: 'Excel',
     },
     { id: 'training', label: 'التكوين والتفتيش (كاباس)', icon: <GraduationCap className="w-4 h-4" /> },
-    { id: 'career', label: 'محاكي الرتب والدرجات', icon: <TrendingUp className="w-4 h-4" /> },
+    {
+      id: 'career',
+      label: 'محاكي الأقدمية والتقاعد والرواتب',
+      icon: <TrendingUp className="w-4 h-4" />,
+      badge: '25-54/55',
+    },
     { id: 'digitalization', label: 'الربط مع الرقمنة', icon: <Database className="w-4 h-4" /> },
     { id: 'coordination', label: 'التنسيق والأولياء', icon: <Users className="w-4 h-4" /> },
   ];
