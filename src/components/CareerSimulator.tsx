@@ -131,9 +131,9 @@ export const CareerSimulator: React.FC<CareerSimulatorProps> = ({ profile }) => 
     Number((promotionPace.yearsRequired - yearsInCurrentEchelon).toFixed(1))
   );
 
-  // ================= Seniority & 5-Year Rank Combination Calculations (2026-2030) =================
-  const currentRefYear = 2026;
-  const currentRefMonth = 1; // 1 جانفي 2026 تاريخ سريان تعليمة الجمع بين الرتب
+  // ================= Seniority & 5-Year Rank Combination Calculations (2025-2029) =================
+  const currentRefYear = 2025;
+  const currentRefMonth = 1; // 01 جانفي 2025 تاريخ سريان آلية الجمع بين الأقدمية في الرتب (لمدة 05 سنوات إلى 31 ديسمبر 2029)
 
   // 1. الأقدمية العامة في التعليم (منذ تاريخ أول توظيف + أشهر الاستخلاف المعتمدة)
   const rawGeneralMonths =
@@ -146,7 +146,7 @@ export const CareerSimulator: React.FC<CareerSimulatorProps> = ({ profile }) => 
   const prevRankTotalMonths = prevRankYears * 12 + prevRankMonths;
   const currRankTotalMonths = currRankYears * 12 + currRankMonths;
 
-  // 3. الأقدمية المعتمدة للترقية (مع تفعيل أو عدم تفعيل رخصة الجمع بين الرتب 2026-2030)
+  // 3. الأقدمية المعتمدة للترقية (مع تفعيل أو عدم تفعيل رخصة الجمع بين الرتب 2025-2029)
   const effectiveRankMonths = applyRankCombination2026
     ? prevRankTotalMonths + currRankTotalMonths
     : currRankTotalMonths;
@@ -161,9 +161,9 @@ export const CareerSimulator: React.FC<CareerSimulatorProps> = ({ profile }) => 
   const monthsNeededForExam = Math.max(0, 60 - effectiveRankMonths);
   const monthsNeededForList = Math.max(0, 120 - effectiveRankMonths);
 
-  // جدول استحقاق الترقية خلال السنوات الخمس الانتقالية (2026 - 2030)
-  const fiveYearTransitionPlan = [2026, 2027, 2028, 2029, 2030].map((yr) => {
-    const addedMonths = (yr - 2026) * 12;
+  // جدول استحقاق الترقية خلال السنوات الخمس الانتقالية (01 جانفي 2025 - 31 ديسمبر 2029)
+  const fiveYearTransitionPlan = [2025, 2026, 2027, 2028, 2029].map((yr) => {
+    const addedMonths = (yr - 2025) * 12;
     const projectedRankMonths = effectiveRankMonths + addedMonths;
     const projectedGeneralMonths = totalGeneralMonths + addedMonths;
     const projRankY = Math.floor(projectedRankMonths / 12);
@@ -233,7 +233,7 @@ export const CareerSimulator: React.FC<CareerSimulatorProps> = ({ profile }) => 
           </div>
         </div>
         <h2 className="text-center font-extrabold text-base mt-3 underline">
-          بطاقة محاكاة المسار المهني، الجمع بين الرتب (2026-2030)، النظام التعويضي (25-55)، وامتياز التقاعد (57 سنة)
+          بطاقة محاكاة المسار المهني، الجمع بين الرتب (01 جانفي 2025 — 31 ديسمبر 2029)، النظام التعويضي (25-55)، وامتياز التقاعد (57 سنة)
         </h2>
       </div>
 
@@ -243,13 +243,13 @@ export const CareerSimulator: React.FC<CareerSimulatorProps> = ({ profile }) => 
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#105e32]/50 border border-[#d4af37]/40 text-xs font-bold text-[#f5d77f] mb-2">
               <Scale className="w-4 h-4" />
-              <span>محاكي المسار المهني الشامل — المرسومان التنفيذيان 25-54 و 25-55 (تحيين 2026)</span>
+              <span>محاكي المسار المهني الشامل — المرسومان التنفيذيان 25-54 و 25-55</span>
             </div>
             <h2 className="text-xl sm:text-2xl font-black text-white">
-              احتساب الخبرة والأقدمية (الجمع بين الرتب لمدة 05 سنوات)، امتياز التقاعد 57 سنة، والمنح الجديدة
+              احتساب الخبرة والأقدمية (الجمع بين الرتب لمدة 05 سنوات: 2025-2029)، امتياز التقاعد 57 سنة، والمنح الجديدة
             </h2>
             <p className="text-xs sm:text-sm text-slate-300 mt-1">
-              حاسبة قانونية ومالية دقيقة تشمل رخصة الجمع بين الأقدمية في الرتب ابتداءً من 01 جانفي 2026، النظام التعويضي 25-55، والتقاعد الخاص بالأساتذة
+              حاسبة قانونية ومالية دقيقة تشمل آلية الجمع بين الأقدمية في الرتب السارية ابتداءً من 01 جانفي 2025 إلى 31 ديسمبر 2029، النظام التعويضي 25-55، والتقاعد الخاص بالأساتذة
             </p>
           </div>
 
@@ -295,7 +295,7 @@ export const CareerSimulator: React.FC<CareerSimulatorProps> = ({ profile }) => 
             <Clock className="w-5 h-5 text-[#d4af37] shrink-0" />
             <div>
               <div className="text-xs font-extrabold">1. الأقدمية والجمع بين الرتب (05 سنوات)</div>
-              <div className="text-[10px] text-slate-400">التعليمة الجديدة ابتداءً من 01-01-2026</div>
+              <div className="text-[10px] text-slate-400">سارية من 01-01-2025 إلى 31-12-2029</div>
             </div>
           </button>
 
@@ -347,7 +347,7 @@ export const CareerSimulator: React.FC<CareerSimulatorProps> = ({ profile }) => 
       </div>
 
       {/* ===================================================================== */}
-      {/* TAB 1: SENIORITY & 5-YEAR RANK COMBINATION (FROM JAN 1, 2026)          */}
+      {/* TAB 1: SENIORITY & 5-YEAR RANK COMBINATION (JAN 1, 2025 - DEC 31, 2029) */}
       {/* ===================================================================== */}
       {activeTab === 'seniority_combination_2026' && (
         <div className="space-y-6">
@@ -359,10 +359,10 @@ export const CareerSimulator: React.FC<CareerSimulatorProps> = ({ profile }) => 
               </div>
               <div className="space-y-1.5">
                 <h3 className="text-base sm:text-lg font-black text-white">
-                  آلية الجمع بين الأقدمية في الرتب لمدة خمس (05) سنوات — سارية ابتداءً من 01 جانفي 2026 إلى 31 ديسمبر 2030
+                  آلية الجمع بين الأقدمية في الرتب لمدة خمس (05) سنوات — سارية ابتداءً من 01 جانفي 2025 إلى 31 ديسمبر 2029
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
-                  عملاً بالأحكام الانتقالية للمرسوم التنفيذي <span className="text-[#f5d77f] font-bold">25-54</span> والتعليمة الوزارية المشتركة لسنة <span className="text-[#f5d77f] font-bold">2026</span>، يستفيد الأساتذة المدمجون أو المرقون في الرتب الجديدة من **حق الجمع بين الأقدمية المكتسبة في رتبتهم الأصلية (السابقة) والأقدمية المكتسبة في رتبتهم الحالية** طيلة فترة انتقالية مدتها **05 سنوات كاملة (2026 - 2030)** لبلوغ شرط الترقية إلى الرتبة الأعلى (05 سنوات للامتحان المهني أو 10 سنوات للتسجيل على قوائم التأهيل).
+                  عملاً بالأحكام الانتقالية للمرسوم التنفيذي <span className="text-[#f5d77f] font-bold">25-54</span> والتعليمة الوزارية المشتركة الخاصة بتطبيقه، يستفيد الأساتذة المدمجون أو المرقون في الرتب الجديدة من **حق الجمع بين الأقدمية المكتسبة في رتبتهم الأصلية (السابقة) والأقدمية المكتسبة في رتبتهم الحالية** طيلة فترة انتقالية مدتها **خمس (05) سنوات سارية ابتداءً من 01 جانفي 2025 إلى غاية 31 ديسمبر 2029** لبلوغ شرط الترقية إلى الرتبة الأعلى (05 سنوات للامتحان المهني أو 10 سنوات للتسجيل على قوائم التأهيل).
                 </p>
               </div>
             </div>
@@ -445,7 +445,7 @@ export const CareerSimulator: React.FC<CareerSimulatorProps> = ({ profile }) => 
               {/* Previous Rank + Current Rank Seniority */}
               <div className="p-3.5 rounded-xl bg-[#05140d] border border-[#d4af37]/40 space-y-3">
                 <div className="text-xs font-extrabold text-[#f5d77f]">
-                  ثانياً: حساب الأقدمية في الرتبة (الجمع بين الرتب 2026)
+                  ثانياً: حساب الأقدمية في الرتبة (الجمع بين الرتب: 2025 - 2029)
                 </div>
 
                 <div>
@@ -520,7 +520,7 @@ export const CareerSimulator: React.FC<CareerSimulatorProps> = ({ profile }) => 
                     htmlFor="combineRanks2026"
                     className="text-xs font-bold text-emerald-300 cursor-pointer leading-snug"
                   >
-                    تفعيل رخصة الجمع بين الأقدمية في الرتبتين (لمدة 05 سنوات ابتداءً من 01-01-2026)
+                    تفعيل آلية الجمع بين الأقدمية في الرتب لمدة خمس (05) سنوات (سارية ابتداءً من 01 جانفي 2025 إلى 31 ديسمبر 2029)
                   </label>
                 </div>
               </div>
@@ -553,7 +553,7 @@ export const CareerSimulator: React.FC<CareerSimulatorProps> = ({ profile }) => 
                 </div>
 
                 <div className="p-4 rounded-2xl bg-[#081c12] border border-emerald-500/40">
-                  <div className="text-xs text-slate-400">الوضعية إزاء الترقية في 2026</div>
+                  <div className="text-xs text-slate-400">الوضعية إزاء الترقية (2025 - 2029)</div>
                   <div className="text-sm font-black text-emerald-300 mt-1.5">
                     {effectiveRankMonths >= 120
                       ? 'مستوفٍ لشرط قوائم التأهيل (10 سنوات) والامتحان المهني'
@@ -564,7 +564,7 @@ export const CareerSimulator: React.FC<CareerSimulatorProps> = ({ profile }) => 
                         } شهر لبلوغ 05 سنوات`}
                   </div>
                   <div className="text-[11px] text-slate-400 mt-1">
-                    وفق المادة الانتقالية للمرسوم 25-54
+                    وفق المادة الانتقالية للمرسوم 25-54 (2025-2029)
                   </div>
                 </div>
               </div>
@@ -595,7 +595,7 @@ export const CareerSimulator: React.FC<CareerSimulatorProps> = ({ profile }) => 
                   <p className="text-[11px] text-slate-300">
                     {effectiveRankMonths >= 60
                       ? `تجاوزت عتبة الـ 05 سنوات بـ (${Math.floor((effectiveRankMonths - 60) / 12)} سنة و ${(effectiveRankMonths - 60) % 12} شهر) بفضل الجمع بين الرتبتين.`
-                      : `ينقصك (${Math.floor(monthsNeededForExam / 12)} سنة و ${monthsNeededForExam % 12} شهر) لبلوغ 05 سنوات ضمن الفترة الانتقالية 2026-2030.`}
+                      : `ينقصك (${Math.floor(monthsNeededForExam / 12)} سنة و ${monthsNeededForExam % 12} شهر) لبلوغ 05 سنوات ضمن الفترة الانتقالية (01 جانفي 2025 — 31 ديسمبر 2029).`}
                   </p>
                 </div>
 
@@ -628,16 +628,16 @@ export const CareerSimulator: React.FC<CareerSimulatorProps> = ({ profile }) => 
                 </div>
               </div>
 
-              {/* 5-Year Transitional Schedule Table (2026 - 2030) */}
+              {/* 5-Year Transitional Schedule Table (2025 - 2029) */}
               <div className="bg-[#081c12] border border-[#d4af37]/30 rounded-2xl p-5">
                 <h4 className="text-sm sm:text-base font-extrabold text-white mb-2 flex items-center gap-2">
                   <Award className="w-5 h-5 text-[#d4af37]" />
                   <span>
-                    الجدول الزمني لاستحقاق الترقية بالجمع بين الرتب خلال الخماسية الانتقالية (01 جانفي 2026 — 31 ديسمبر 2030)
+                    الجدول الزمني لاستحقاق الترقية بالجمع بين الرتب خلال الخماسية الانتقالية (ابتداءً من 01 جانفي 2025 إلى 31 ديسمبر 2029)
                   </span>
                 </h4>
                 <p className="text-xs text-slate-400 mb-4">
-                  يوضح هذا الجدول تطور أقدميتك المدمجة سنة بسنة طيلة السنوات الـ 05 المسموح فيها بالجمع بين أقدمية الرتبة السابقة والرتبة الحالية:
+                  يوضح هذا الجدول تطور أقدميتك المدمجة سنة بسنة طيلة السنوات الخمس (05) المسموح فيها بالجمع بين أقدمية الرتبة السابقة والرتبة الحالية (2025 — 2029):
                 </p>
 
                 <div className="overflow-x-auto">
@@ -655,7 +655,7 @@ export const CareerSimulator: React.FC<CareerSimulatorProps> = ({ profile }) => 
                       {fiveYearTransitionPlan.map((row) => (
                         <tr key={row.year} className="hover:bg-[#0c291b]/40">
                           <td className="py-2.5 px-3 font-black text-white tabular-nums">
-                            دورة {row.year} (السنة {row.year - 2025} من 5)
+                            دورة {row.year} (السنة {row.year - 2024} من 5)
                           </td>
                           <td className="py-2.5 px-3 text-slate-300 font-bold tabular-nums">
                             {row.projGenY} سنة و {generalRemMonths} شهر
@@ -1217,9 +1217,9 @@ export const CareerSimulator: React.FC<CareerSimulatorProps> = ({ profile }) => 
               </li>
               <li className="p-3 rounded-xl bg-[#05140d] border border-[#d4af37]/20">
                 <span className="font-extrabold text-emerald-300 block mb-0.5">
-                  2. رخصة الجمع بين الأقدمية في الرتب لمدة 05 سنوات (2026 - 2030):
+                  2. آلية الجمع بين الأقدمية في الرتب لمدة خمس (05) سنوات — سارية ابتداءً من 01 جانفي 2025 إلى 31 ديسمبر 2029:
                 </span>
-                الترخيص بجمع الأقدمية المكتسبة في الرتبة الأصلية قبل الإدماج مع الأقدمية في الرتبة الجديدة لمدة انتقالية قدرها 05 سنوات ابتداءً من 01 جانفي 2026 للمشاركة في الامتحانات المهنية والتسجيل في قوائم التأهيل.
+                الترخيص بجمع الأقدمية المكتسبة في الرتبة الأصلية قبل الإدماج مع الأقدمية في الرتبة الجديدة لمدة انتقالية قدرها 05 سنوات (سارية ابتداءً من 01 جانفي 2025 إلى غاية 31 ديسمبر 2029) للمشاركة في الامتحانات المهنية والتسجيل في قوائم التأهيل.
               </li>
               <li className="p-3 rounded-xl bg-[#05140d] border border-[#d4af37]/20">
                 <span className="font-extrabold text-emerald-300 block mb-0.5">
